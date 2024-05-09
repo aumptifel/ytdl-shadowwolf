@@ -8,7 +8,7 @@ const App = () => {
 
   const handleDownload = async () => {
     const data = await axios.get(
-      `https://ytdl-shadowwolf-server.vercel.app/download?url=${urlValue}`
+      `http://localhost:4000/download?url=${urlValue}`
     );
     setData(data);
     setUrlValue("");
