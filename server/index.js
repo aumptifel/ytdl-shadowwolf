@@ -1,9 +1,16 @@
 const express = require('express')
 const ytdl = require('ytdl-core')
+const cors = require('cors')
 
-const app = express()
+const app = express();
+
+const corsOptions = {
+    origin: 'https://ytdl-shadowwolf.vercel.app',
+    credentials: true,
+  };
+
 var cors = require("cors");
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.get('/download', async (req, res) => {
     try {
