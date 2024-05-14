@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import logo from "./assets/ytlogo.svg";
+import { ArrowRightIcon } from '@heroicons/react/24/solid'
 
 const App = () => {
   const [urlValue, setUrlValue] = useState("");
@@ -8,46 +8,38 @@ const App = () => {
 
   const handleDownload = async () => {
     const data = await axios.get(
-      `https://ytdl-shadowwolf-server.vercel.app/download?url=${urlValue}`
+      `http://localhost:4000/download?url=${urlValue}`
     );
     setData(data);
     setUrlValue("");
   };
 
   return (
-    <div className=" bg-yellow-500 flex flex-col justify-center items-center min-h-screen">
-      <div className="flex flex-row justify-center items-center">
-        <div>
-          <img className=" w-20 h-20" src={logo} alt="logo" />
-        </div>
-        <div className="text-4xl font-bold">
-          <h1>
-            Chance <span className=" text-red-700">Youtube</span> downloader
-          </h1>
-        </div>
-      </div>
-      <div className="flex flex-row">
-        <div>
-          <input
-            type="text"
-            placeholder="Enter url"
-            value={urlValue}
-            onChange={(e) => setUrlValue(e.target.value)}
-            className=" outline-none p-2 bg-yellow-500 border-2 border-gray-500 rounded-md md:mr-4"
-          />
-        </div>
-        <div className=" bg-black text-yellow-500 py-2 px-6 rounded-md cursor-pointer">
-          <button onClick={handleDownload}>download</button>
-        </div>
+    <div className=" bg-white flex flex-col justify-center items-center min-h-screen">
+      <div className="relative flex w-full max-w-106 mx-4">
+        <button
+          onClick={handleDownload}
+          className="!absolute right-2.5 top-2.5 z-10 select-none rounded-md w-10 h-10 bg-blue-600 flex justify-center items-center hover:bg-blue-500"
+        >
+          <ArrowRightIcon className="size-6 text-white" />
+        </button>
+        <input
+          type="text"
+          placeholder="Paste your video link"
+          value={urlValue}
+          onChange={(e) => setUrlValue(e.target.value)}
+          className="peer h-15 w-full pl-3 pr-15 rounded-md bg-white ring-1 ring-slate-900/10 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm text-slate-700 placeholder-gray-500 focus:outline-0 disabled:bg-slate-100"
+        />
       </div>
 
       <div>
         {data !== null ? (
           <div>
             <div className="my-4">
-              <iframe
-                width="570"
-                height="320"
+              <iframe 
+                className="bg-clip-border rounded-xl"
+                width="424"
+                height="230"
                 src={`${data.data.url}`}
                 title="video"
               />
@@ -69,7 +61,7 @@ const App = () => {
             </div>
           </div>
         ) : (
-          <div className=" text-red-700 font-bold mt-10">No download yet</div>
+          <div></div>
         )}
       </div>
     </div>

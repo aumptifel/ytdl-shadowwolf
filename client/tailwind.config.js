@@ -5,7 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        '15': '3.75rem',
+      },
+      maxWidth: {
+        '106': '26.5rem',
+      },
+      padding: {
+        '15': '3.75rem',
+      }
+    },
   },
   plugins: [],
 }
